@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 09:19:33 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:28:32 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:05:34 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,22 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+
+typedef struct	s_list
+{
+	void				*content;
+	struct s_list		*next;
+}				t_list;
+
+void			ft_lstadd_front(t_list **alst, t_list *new);
+void			ft_lstclear(t_list **lst, void (*del)(void *));
+void			ft_lstdelone(t_list *lst, void (*del)(void *));
+void			ft_lstiter(t_list *lst, void (*f)(t_list *));
+void			ft_lstadd_back(t_list **alst, t_list *new);
+int				ft_lstsize(t_list *lst);
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list*));
+t_list			*ft_lstnew(void const *content);
+t_list			*ft_lstlast(t_list *lst);
 
 /*
 ** Partie requise

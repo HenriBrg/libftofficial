@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_lstclear_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:33:53 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:31:59 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:11:44 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 ** la fonction ft_memdel de la partie obligatoire).
 */
 
-#include "../inc/bonus.h"
+#include "../inc/libft.h"
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {

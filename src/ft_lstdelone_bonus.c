@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:34:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:32:00 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:06:15 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** de la partie obligatoire).
 */
 
-#include "../inc/bonus.h"
+#include "../inc/libft.h"
 
 void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {

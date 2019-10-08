@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 17:33:27 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:31:58 by hberger          ###   ########.fr       */
+/*   Created: 2019/10/07 18:10:23 by hberger           #+#    #+#             */
+/*   Updated: 2019/10/08 12:06:19 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**              <----- Description ----->
-**
-** Ajoute l’élément new en tête de la liste.
-*/
+#include "../inc/libft.h"
 
-#include "../inc/bonus.h"
-
-void	ft_lstadd_front(t_list **alst, t_list *new)
+t_list	*ft_lstlast(t_list *lst)
 {
-	new->next = *alst;
-	*alst = new;
+	t_list	*current;
+
+	if (lst == 0)
+		return (0);
+	current = lst;
+	while (current->next != 0)
+		current = current->next;
+	return (current);
 }

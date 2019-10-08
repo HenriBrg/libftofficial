@@ -6,11 +6,11 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:14:42 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:30:53 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:06:25 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/bonus.h"
+#include "../inc/libft.h"
 
 int	ft_lstsize(t_list *lst)
 {

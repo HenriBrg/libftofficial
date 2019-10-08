@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:34:07 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:32:00 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:06:17 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@
 **                *(char *)(elem->content) -= 32;
 */
 
-#include "../inc/bonus.h"
+#include "../inc/libft.h"
 
-void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
+void	ft_lstiter(t_list *lst, void (*f)(t_list *))
 {
 	if (lst == 0 || f == 0)
 		return ;

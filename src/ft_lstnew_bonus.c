@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:35:22 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/08 10:33:12 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 12:10:08 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 ** Si l’allocation échoue, la fonction renvoie NULL.
 */
 
-#include "../inc/bonus.h"
+#include "../inc/libft.h"
 
 static char	*my_strdup(const char *src)
 {
@@ -45,7 +45,7 @@ static char	*my_strdup(const char *src)
 	return (output);
 }
 
-t_list	*ft_lstnew(void const *content)
+t_list		*ft_lstnew(void const *content)
 {
 	t_list	*current;
 

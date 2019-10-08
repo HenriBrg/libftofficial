@@ -8,15 +8,17 @@ SRCS =  src/ft_memset.c  src/ft_bzero.c   src/ft_memcpy.c  src/ft_memccpy.c    \
 		src/ft_strnstr.c src/ft_atoi.c    src/ft_calloc.c  src/ft_strdup.c     \
 		src/ft_calloc.c  src/ft_strdup.c  src/ft_substr.c  src/ft_strjoin.c    \
 		src/ft_strtrim.c src/ft_split.c   src/ft_itoa.c    src/ft_strmapi.c    \
-		src/ft_putchar_fd.c \
-		src/ft_putstr_fd.c  \
-		src/ft_putendl_fd.c \
+		src/ft_putchar_fd.c 												   \
+		src/ft_putstr_fd.c  												   \
+		src/ft_putendl_fd.c 												   \
 		src/ft_putnbr_fd.c
 
 
-SRCSBONUS = bonus/ft_lstnew.c   bonus/ft_lstadd_front.c bonus/ft_lstsize.c     \
-			bonus/ft_lstlast.c  bonus/ft_lstadd_back.c  bonus/ft_lstdelone.c   \
-			bonus/ft_lstclear.c bonus/ft_lstiter.c      bonus/ft_lstmap.c
+SRCSBONUS = src/ft_lstnew_bonus.c   		src/ft_lstadd_front_bonus.c	   	   \
+			src/ft_lstsize_bonus.c  		src/ft_lstlast_bonus.c		   	   \
+			src/ft_lstadd_back_bonus.c 		src/ft_lstdelone_bonus.c	   	   \
+			src/ft_lstclear_bonus.c 		src/ft_lstiter_bonus.c		   	   \
+			src/ft_lstmap_bonus.c
 
 OBJS = ${SRCS:.c=.o}
 
