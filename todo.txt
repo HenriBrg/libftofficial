@@ -1,5 +1,0 @@
-FULL TEST
-
-CHECK des prototypes et la correspondance avec le sujet
-
-REFAIRE TRIM

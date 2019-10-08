@@ -6,15 +6,15 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 18:10:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/07 18:52:19 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 10:32:01 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../inc/libft.h"
+#include "../inc/bonus.h"
 
-t_list *ft_lstlast(t_list *lst)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list *current;
+	t_list	*current;
 
 	if (lst == 0)
 		return (0);

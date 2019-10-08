@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:55:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/07 17:46:16 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 09:17:24 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 
 #include "../inc/libft.h"
 
-int		words(const char *str, char c)
+static int		words(const char *str, char c)
 {
 	int i;
 	int x;
@@ -45,7 +45,7 @@ int		words(const char *str, char c)
 	return (x + 1);
 }
 
-char	*copy(const char *str, char c)
+static char		*copy(const char *str, char c)
 {
 	int		i;
 	char	*output;
@@ -74,7 +74,7 @@ char	*copy(const char *str, char c)
 	return (output);
 }
 
-char	**handle_empty_char(const char *str)
+static char		**handle_empty_char(const char *str)
 {
 	int		i;
 	char	**result;
@@ -97,7 +97,7 @@ char	**handle_empty_char(const char *str)
 	return (result);
 }
 
-char	**ft_split(char const *s, char c)
+char			**ft_split(char const *s, char c)
 {
 	int		i;
 	int		x;

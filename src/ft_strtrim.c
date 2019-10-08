@@ -5,77 +5,62 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/07 18:39:08 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/07 18:45:26 by hberger          ###   ########.fr       */
+/*   Created: 2019/10/08 08:49:05 by hberger           #+#    #+#             */
+/*   Updated: 2019/10/08 09:17:42 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-**              <----- Description ----->
-**
-** Alloue et retourne une copie de la chaine passée en paramètre
-** sans les espaces blancs au debut et à la fin de cette chaine.
-** On considère comme espaces blancs
-** les caractères ’ ’, ’\n’ et ’\t’.
-** Si s ne contient pas d’espaces blancs au début ou à la fin,
-** la fonction renvoie une copie de s.
-** Si l’allocation echoue, la fonction renvoie NULL.
-*/
-
 #include "../inc/libft.h"
 
-static char		*ft_strncpy(char *dst, const char *src, size_t n)
+static int		check(char const *set, char c)
 {
-	unsigned int i;
+	int i;
+
+	i = -1;
+	while (set[++i] != '\0')
+		if (set[i] == c)
+			return (1);
+	return (0);
+}
+
+static int		start(char const *s1, char const *set)
+{
+	int i;
 
 	i = 0;
-	while (src[i] != '\0' && i < n)
-	{
-		dst[i] = src[i];
+	while (check(set, s1[i]))
 		i++;
-	}
-	while (i < n)
-	{
-		dst[i] = '\0';
-		i++;
-	}
-	return (dst);
+	return (i);
 }
 
-static int		size(size_t length, size_t start, size_t end)
+static int		end(char const *s1, char const *set)
 {
-	int	i;
+	int i;
+	int x;
 
-	i = (length - (length - (length - start)));
-	i -= (length - (length - (length - end)));
-	return (i + 1);
+	x = 0;
+	i = strlen(s1);
+	while (check(set, s1[--i]))
+		x++;
+	return (x);
 }
 
-char			*ft_strtrim(char const *s)
+char			*ft_strtrim(char const *s1, char const *set)
 {
 	size_t		i;
-	size_t		end;
-	size_t		start;
+	size_t		x;
+	size_t		size;
 	char		*output;
 
-	if (s == 0)
+	size = strlen(s1);
+	if (size == 0)
 		return (0);
-	i = 0;
-	start = 0;
-	while (s[i] != '\0' && (s[i] == ' ' || s[i] == '\n' || s[i] == '\t'))
-	{
-		i++;
-		start++;
-	}
-	if (s[i] == '\0')
+	x = start(s1, set);
+	size = size - x - end(s1, set);
+	if (!(output = (char*)malloc(sizeof(char) * size)))
 		return (0);
-	end = ft_strlen(s) - 1;
-	while (end >= 0 && (s[end] == ' ' || s[end] == '\n' || s[end] == '\t'))
-		end--;
-	if (!(output = malloc(sizeof(char) *
-			size(ft_strlen(s), start, end) + 1)))
-		return (0);
-	ft_strncpy(output, s + start, size(ft_strlen(s), start, end));
-	output[size(ft_strlen(s), start, end)] = '\0';
+	i = -1;
+	while (++i < size)
+		output[i] = s1[x + i];
 	return (output);
 }

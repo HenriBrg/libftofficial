@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:35:22 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/07 18:47:49 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 10:33:12 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,27 @@
 ** Si l’allocation échoue, la fonction renvoie NULL.
 */
 
-#include "../inc/libft.h"
+#include "../inc/bonus.h"
+
+static char	*my_strdup(const char *src)
+{
+	int		i;
+	char	*output;
+
+	i = 0;
+	while (src[i] != '\0')
+		i++;
+	if ((output = malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (src[i] != '\0')
+	{
+		output[i] = src[i];
+		i++;
+	}
+	output[i] = '\0';
+	return (output);
+}
 
 t_list	*ft_lstnew(void const *content)
 {
@@ -34,7 +54,7 @@ t_list	*ft_lstnew(void const *content)
 	if (content == NULL)
 		current->content = NULL;
 	else
-		current->content = ft_strdup((char*)content);
+		current->content = my_strdup((char*)content);
 	current->next = NULL;
 	return (current);
 }

@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:34:35 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/07 18:57:19 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/08 10:32:01 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 ** Si une allocation échoue, la fonction renvoie NULL.
 */
 
-#include "../inc/libft.h"
+#include "../inc/bonus.h"
 
-t_list *ft_lstmap(t_list *lst, t_list *(*f)(t_list*))
+t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list*))
 {
 	t_list	*previous;
 	t_list	*begin;
