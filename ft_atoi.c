@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:32:51 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 10:39:14 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/10 15:50:28 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 ** La fonction atoi() convertit le début de la chaîne pointée
 ** en entier de type int
 */
-
-#include "./libft.h"
 
 int	ft_atoi(const char *str)
 {

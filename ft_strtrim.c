@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 08:49:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 11:40:16 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/10 17:44:37 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ char			*ft_strtrim(char const *s1, char const *set)
 	size_t		size;
 	char		*output;
 
+	if (s1 == 0 || set == 0)
+		return (0);
 	output = 0;
 	size = ft_strlen(s1);
 	if (size == 0)
