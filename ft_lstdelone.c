@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:34:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 18:51:20 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:07:32 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(void*))
 {
-	if (lst == NULL)
+	if (lst == NULL || del == 0)
 		return ;
 	del(lst->content);
 	free(lst);

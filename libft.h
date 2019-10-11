@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 09:19:33 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 11:56:13 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/11 17:29:05 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void			ft_lstdelone(t_list *lst, void (*del)(void*));
 void			ft_lstiter(t_list *lst, void (*f)(void *));
 void			ft_lstadd_back(t_list **alst, t_list *new);
 int				ft_lstsize(t_list *lst);
-t_list			*ft_lstmap(t_list *lst, t_list *(*f)(void *));
+t_list			*ft_lstmap(t_list *lst, void *(*f)(void *));
 t_list			*ft_lstnew(void *content);
 t_list			*ft_lstlast(t_list *lst);
 

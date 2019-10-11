@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:33:53 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 18:53:34 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/11 18:09:54 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	ft_lstclear(t_list **lst, void (*del)(void *))
 	t_list	*current;
 	t_list	*next;
 
+	if (del == 0 || *lst == 0)
+		return ;
 	current = *lst;
 	while (current != NULL)
 	{
