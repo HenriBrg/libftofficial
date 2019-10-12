@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:55:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 10:40:49 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/12 15:54:11 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ char			**ft_split(char const *s, char c)
 	int		x;
 	char	**result;
 
-	if (c == 0)
-		return (handle_empty_char(s));
+	if (c == 0 || s == 0)
+		return (s == 0) ? 0 : handle_empty_char(s);
 	if ((result = malloc(sizeof(char*) * words(s, c))) == NULL)
 		return (NULL);
 	i = 0;
