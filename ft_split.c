@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:55:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 22:08:55 by henri            ###   ########.fr       */
+/*   Updated: 2019/10/14 22:28:32 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 ** résultant de la découpe de s selon le caractère c.
 ** Si l’allocation echoue, la fonction retourne NULL.
 **
-** Exemple : ft_strsplit("*salut*les***etudiants*", ’*’)
+** Exemple : ft_split("*salut*les***etudiants*", ’*’)
 ** renvoie le tableau ["salut", "les", "etudiants"].
 */
 
 #include "./libft.h"
 
-static int		ft_in_charset(char c, char charset)
+static int		check(char c, char charset)
 {
 	if (c == charset)
 		return (1);
@@ -41,7 +41,7 @@ static int		ft_word_nbr(char *str, char charset)
 	nbr = 0;
 	last_is_sep = 1;
 	while (str[++i])
-		if (ft_in_charset(str[i], charset))
+		if (check(str[i], charset))
 			last_is_sep = 1;
 		else if (last_is_sep)
 		{
@@ -57,13 +57,13 @@ static char		*ft_create_word(char *str, char charset)
 	char	*word;
 
 	i = 0;
-	while (str[i] && !(ft_in_charset(str[i], charset)))
+	while (str[i] && !(check(str[i], charset)))
 		i++;
 	word = malloc(sizeof(char) * (i + 1));
 	if (word == NULL)
 		return (NULL);
 	i = 0;
-	while (str[i] && !(ft_in_charset(str[i], charset)))
+	while (str[i] && !(check(str[i], charset)))
 	{
 		word[i] = str[i];
 		i++;
@@ -82,7 +82,7 @@ static int		ft_create_strs(char **strs, char *str, char charset)
 	nbr = 0;
 	last_is_sep = 1;
 	while (str[++i])
-		if (ft_in_charset(str[i], charset))
+		if (check(str[i], charset))
 			last_is_sep = 1;
 		else if (last_is_sep)
 		{
@@ -101,17 +101,17 @@ static int		ft_create_strs(char **strs, char *str, char charset)
 char			**ft_split(char const *s, char c)
 {
 	char	**strs;
-	char	*ss;
+	char	*tmp;
 
-	ss = (char *)s;
-	strs = malloc(sizeof(char *) * (ft_word_nbr(ss, c) + 1));
+	tmp = (char *)s;
+	strs = malloc(sizeof(char *) * (ft_word_nbr(tmp, c) + 1));
 	if (strs == 0)
 		return (0);
-	if (ft_create_strs(strs, ss, c))
+	if (ft_create_strs(strs, tmp, c))
 	{
 		free(strs);
 		return (NULL);
 	}
-	strs[ft_word_nbr(ss, c)] = 0;
+	strs[ft_word_nbr(tmp, c)] = 0;
 	return (strs);
 }

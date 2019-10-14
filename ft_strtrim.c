@@ -6,13 +6,13 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 08:49:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 22:12:49 by henri            ###   ########.fr       */
+/*   Updated: 2019/10/14 22:32:09 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static int	ft_len_trim(char const *str)
+static int	len_get(char const *str)
 {
 	int i;
 
@@ -33,7 +33,7 @@ static int	ft_is_in_set(char c, char const *set)
 	return (0);
 }
 
-static int	ft_total_len_trim(char const *s1, char const *set)
+static int	total_len(char const *s1, char const *set)
 {
 	int i;
 	int j;
@@ -43,7 +43,7 @@ static int	ft_total_len_trim(char const *s1, char const *set)
 	soustract = 0;
 	while (s1[++i] && ft_is_in_set(s1[i], set))
 		soustract++;
-	j = ft_len_trim(s1);
+	j = len_get(s1);
 	while (s1[--j] && ft_is_in_set(s1[j], set) && j > i)
 		soustract++;
 	return (soustract);
@@ -56,7 +56,7 @@ char		*ft_strtrim(char const *s1, char const *set)
 	char	*new;
 
 	i = -1;
-	size = ft_len_trim(s1) - ft_total_len_trim(s1, set) + 1;
+	size = len_get(s1) - total_len(s1, set) + 1;
 	new = malloc(sizeof(char) * size);
 	if (new == 0)
 		return (0);

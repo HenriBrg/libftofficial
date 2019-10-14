@@ -6,13 +6,13 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:56:21 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 22:13:26 by henri            ###   ########.fr       */
+/*   Updated: 2019/10/14 22:34:31 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static size_t		str_len_substr(const char *str)
+static size_t		len_sub(const char *str)
 {
 	int i;
 
@@ -38,7 +38,7 @@ char				*ft_substr(char const *s, unsigned int start, size_t len)
 	unsigned int	size;
 	char			*copy;
 
-	if (!s || str_len_substr(s) < (size_t)start)
+	if (!s || len_sub(s) < (size_t)start)
 	{
 		copy = malloc(sizeof(char) * 1);
 		if (copy == 0)

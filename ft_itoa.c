@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:40:49 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 22:08:14 by henri            ###   ########.fr       */
+/*   Updated: 2019/10/14 22:22:57 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 #include "./libft.h"
 
-static int	ft_itoalen(long long int n, int neg)
+static int	get_len(long long int n, int neg)
 {
 	long long int	mult;
 	int				size;
@@ -40,25 +40,25 @@ char		*ft_itoa(int n)
 {
 	int				size;
 	int				neg;
-	long long int	nn;
+	long long int	nb;
 	char			*result;
 
-	nn = n;
+	nb = n;
 	neg = 0;
-	if (nn < 0)
+	if (nb < 0)
 	{
 		neg = 1;
-		nn = -nn;
+		nb = -nb;
 	}
-	size = ft_itoalen(nn, neg);
+	size = get_len(nb, neg);
 	result = malloc(sizeof(char) * (size + 1));
 	if (result == 0)
 		return (0);
 	result[size] = '\0';
 	while (--size >= 0)
 	{
-		result[size] = (nn % 10) + 48;
-		nn /= 10;
+		result[size] = (nb % 10) + 48;
+		nb /= 10;
 	}
 	if (neg)
 		result[size + 1] = '-';
