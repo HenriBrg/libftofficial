@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 08:49:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 17:44:37 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/14 14:23:15 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ char			*ft_strtrim(char const *s1, char const *set)
 	if (x == size)
 		return ((output = ft_strdup("")));
 	size = size - x - end(s1, set);
-	if (!(output = (char*)malloc(sizeof(char) * size)))
+	if (!(output = (char*)malloc(sizeof(char) * size + 1)))
 		return (0);
 	i = -1;
 	while (++i < size)
