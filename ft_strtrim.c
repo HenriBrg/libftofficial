@@ -6,69 +6,65 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 08:49:05 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 14:23:15 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/14 22:12:49 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./libft.h"
 
-static int		check(char const *set, char c)
+static int	ft_len_trim(char const *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+static int	ft_is_in_set(char c, char const *set)
 {
 	int i;
 
 	i = -1;
-	while (set[++i] != '\0')
+	while (set[++i])
 		if (set[i] == c)
 			return (1);
 	return (0);
 }
 
-static int		start(char const *s1, char const *set)
+static int	ft_total_len_trim(char const *s1, char const *set)
 {
 	int i;
+	int j;
+	int soustract;
 
-	i = 0;
-	while (check(set, s1[i]))
-		i++;
-	return (i);
-}
-
-static int		end(char const *s1, char const *set)
-{
-	int i;
-	int x;
-
-	x = 0;
-	i = ft_strlen(s1);
-	while (check(set, s1[--i]))
-		x++;
-	return (x);
-}
-
-char			*ft_strtrim(char const *s1, char const *set)
-{
-	size_t		i;
-	size_t		x;
-	size_t		size;
-	char		*output;
-
-	if (s1 == 0 || set == 0)
-		return (0);
-	output = 0;
-	size = ft_strlen(s1);
-	if (size == 0)
-		return (0);
-	if (ft_strlen(set) == 0)
-		return ((output = ft_strdup(s1)));
-	x = start(s1, set);
-	if (x == size)
-		return ((output = ft_strdup("")));
-	size = size - x - end(s1, set);
-	if (!(output = (char*)malloc(sizeof(char) * size + 1)))
-		return (0);
 	i = -1;
+	soustract = 0;
+	while (s1[++i] && ft_is_in_set(s1[i], set))
+		soustract++;
+	j = ft_len_trim(s1);
+	while (s1[--j] && ft_is_in_set(s1[j], set) && j > i)
+		soustract++;
+	return (soustract);
+}
+
+char		*ft_strtrim(char const *s1, char const *set)
+{
+	int		i;
+	int		size;
+	char	*new;
+
+	i = -1;
+	size = ft_len_trim(s1) - ft_total_len_trim(s1, set) + 1;
+	new = malloc(sizeof(char) * size);
+	if (new == 0)
+		return (0);
+	while (ft_is_in_set(*s1, set))
+		s1++;
+	size--;
 	while (++i < size)
-		output[i] = s1[x + i];
-	output[i] = '\0';
-	return (output);
+		new[i] = s1[i];
+	new[i] = '\0';
+	return (new);
 }

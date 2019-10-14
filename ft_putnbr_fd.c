@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 17:00:18 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 10:40:41 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/14 22:03:07 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,21 +20,25 @@
 
 void	ft_putnbr_fd(int n, int fd)
 {
-	if (n == -2147483648)
-	{
-		write(fd, "-2147483648", 11);
-		return ;
-	}
-	if (n < 0)
+	long long	sup;
+	char		c;
+	long long	nnbb;
+
+	sup = 10;
+	nnbb = n;
+	if (nnbb < 0)
 	{
 		write(fd, "-", 1);
-		n = n * -1;
+		nnbb *= -1;
 	}
-	if (n < 10)
-		ft_putchar_fd(n + '0', fd);
-	else
+	while (sup <= nnbb)
+		sup *= 10;
+	sup /= 10;
+	while (sup > 0)
 	{
-		ft_putnbr_fd(n / 10, fd);
-		ft_putnbr_fd(n % 10, fd);
+		c = ((nnbb - (nnbb % sup)) / sup) + 48;
+		write(fd, &c, 1);
+		nnbb = nnbb % sup;
+		sup /= 10;
 	}
 }

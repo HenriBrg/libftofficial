@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:55:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/12 15:54:11 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/14 22:08:55 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,103 +24,94 @@
 
 #include "./libft.h"
 
-static int		words(const char *str, char c)
+static int		ft_in_charset(char c, char charset)
+{
+	if (c == charset)
+		return (1);
+	return (0);
+}
+
+static int		ft_word_nbr(char *str, char charset)
 {
 	int i;
-	int x;
+	int nbr;
+	int last_is_sep;
 
-	i = 0;
-	x = 0;
-	while (str[i] != '\0')
-	{
-		if (str[i] != c)
+	i = -1;
+	nbr = 0;
+	last_is_sep = 1;
+	while (str[++i])
+		if (ft_in_charset(str[i], charset))
+			last_is_sep = 1;
+		else if (last_is_sep)
 		{
-			x++;
-			while (str[i] != c && str[i])
-				i++;
+			last_is_sep = 0;
+			nbr++;
 		}
-		else
-			i++;
-	}
-	return (x + 1);
+	return (nbr);
 }
 
-static char		*copy(const char *str, char c)
+static char		*ft_create_word(char *str, char charset)
 {
 	int		i;
-	char	*output;
+	char	*word;
 
 	i = 0;
-	while (str[i] != c && str[i])
+	while (str[i] && !(ft_in_charset(str[i], charset)))
 		i++;
-	if ((output = (char*)malloc(sizeof(char) * (i + 1))) == NULL)
+	word = malloc(sizeof(char) * (i + 1));
+	if (word == NULL)
 		return (NULL);
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i] && !(ft_in_charset(str[i], charset)))
 	{
-		if (str[i] != c)
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
+	return (word);
+}
+
+static int		ft_create_strs(char **strs, char *str, char charset)
+{
+	int i;
+	int nbr;
+	int last_is_sep;
+
+	i = -1;
+	nbr = 0;
+	last_is_sep = 1;
+	while (str[++i])
+		if (ft_in_charset(str[i], charset))
+			last_is_sep = 1;
+		else if (last_is_sep)
 		{
-			while (str[i] != c && str[i] != '\0')
+			last_is_sep = 0;
+			strs[nbr] = ft_create_word(str + i, charset);
+			if (strs[nbr] == NULL)
 			{
-				output[i] = str[i];
-				i++;
+				ft_split_free(strs, nbr);
+				return (1);
 			}
-			output[i] = '\0';
-			return (output);
+			nbr++;
 		}
-		else
-			i++;
-	}
-	return (output);
-}
-
-static char		**handle_empty_char(const char *str)
-{
-	int		i;
-	char	**result;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	if ((result = (char**)malloc(sizeof(char*) * 2)) == NULL)
-		return (NULL);
-	if ((result[0] = (char*)malloc(sizeof(char) * (i + 1))) == NULL)
-		return (NULL);
-	i = 0;
-	while (str[i] != '\0')
-	{
-		result[0][i] = str[i];
-		i++;
-	}
-	result[0][i] = 0;
-	result[1] = 0;
-	return (result);
+	return (0);
 }
 
 char			**ft_split(char const *s, char c)
 {
-	int		i;
-	int		x;
-	char	**result;
+	char	**strs;
+	char	*ss;
 
-	if (c == 0 || s == 0)
-		return (s == 0) ? 0 : handle_empty_char(s);
-	if ((result = malloc(sizeof(char*) * words(s, c))) == NULL)
-		return (NULL);
-	i = 0;
-	x = 0;
-	while (s[i] != '\0')
+	ss = (char *)s;
+	strs = malloc(sizeof(char *) * (ft_word_nbr(ss, c) + 1));
+	if (strs == 0)
+		return (0);
+	if (ft_create_strs(strs, ss, c))
 	{
-		if (s[i] != c)
-		{
-			result[x] = copy(s + i, c);
-			while (s[i] != c && s[i])
-				i++;
-			x++;
-		}
-		else
-			i++;
+		free(strs);
+		return (NULL);
 	}
-	result[x] = 0;
-	return (result);
+	strs[ft_word_nbr(ss, c)] = 0;
+	return (strs);
 }

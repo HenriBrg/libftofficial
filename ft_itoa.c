@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:40:49 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/10 10:39:43 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/14 22:08:14 by henri            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,46 @@
 
 #include "./libft.h"
 
-char	*ft_itoa(int n)
+static int	ft_itoalen(long long int n, int neg)
 {
-	int		nb;
-	int		size;
-	int		neg;
-	char	*str;
+	long long int	mult;
+	int				size;
 
-	nb = n;
-	size = 0;
-	str = 0;
-	if (nb == -2147483648 || nb == 0)
-		return (nb == 0) ? ft_strdup("0") : ft_strdup("-2147483648");
-	while (nb && ++size)
-		nb = nb / 10;
-	if (n < 0 && size++ && (neg = 1))
-		n *= -1;
-	if ((str = (char*)malloc(sizeof(char) * (size + 1))) == NULL)
-		return (NULL);
-	if (neg == 1)
-		str[0] = '-';
-	str[size--] = '\0';
-	while (n)
+	mult = 10;
+	size = 1;
+	while (mult <= n)
 	{
-		str[size--] = (n % 10) + '0';
-		n = n / 10;
+		mult *= 10;
+		size++;
 	}
-	return (str);
+	return (size + neg);
+}
+
+char		*ft_itoa(int n)
+{
+	int				size;
+	int				neg;
+	long long int	nn;
+	char			*result;
+
+	nn = n;
+	neg = 0;
+	if (nn < 0)
+	{
+		neg = 1;
+		nn = -nn;
+	}
+	size = ft_itoalen(nn, neg);
+	result = malloc(sizeof(char) * (size + 1));
+	if (result == 0)
+		return (0);
+	result[size] = '\0';
+	while (--size >= 0)
+	{
+		result[size] = (nn % 10) + 48;
+		nn /= 10;
+	}
+	if (neg)
+		result[size + 1] = '-';
+	return (result);
 }
