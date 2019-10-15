@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 16:55:23 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/14 22:28:32 by henri            ###   ########.fr       */
+/*   Updated: 2019/10/15 16:50:29 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,8 @@ static int		ft_create_strs(char **strs, char *str, char charset)
 			strs[nbr] = ft_create_word(str + i, charset);
 			if (strs[nbr] == NULL)
 			{
-				ft_split_free(strs, nbr);
+				while (nbr-- > 0)
+					free(strs[nbr]);
 				return (1);
 			}
 			nbr++;

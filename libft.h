@@ -6,7 +6,7 @@
 /*   By: hberger <hberger@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/08 09:19:33 by hberger           #+#    #+#             */
-/*   Updated: 2019/10/11 17:29:05 by hberger          ###   ########.fr       */
+/*   Updated: 2019/10/15 16:45:30 by hberger          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strjoin(char const *s1, char const *s2);
 char			**ft_split(char const *s, char c);
+void			ft_split_free(char **strs, int nbr);
 
 #endif
